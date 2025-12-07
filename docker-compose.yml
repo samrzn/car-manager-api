@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: db_car_manager
+    restart: always
+    environment:
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: app_password
+      POSTGRES_DB: car_manager
+    ports:
+      - '5432:5432'
+    volumes:
+      - car_manager_pgdata:/var/lib/postgresql/data
+
+  api:
+    build: .
+    container_name: api_car_manager
+    restart: always
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: app_user
+      DB_PASS: app_password
+      DB_NAME: car_manager
+    ports:
+      - '3000:3000'
+    command: sh -c "npm run migration:run && npm start"
+
+volumes:
+  car_manager_pgdata:
