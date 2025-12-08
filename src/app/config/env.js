@@ -7,5 +7,5 @@ export const env = {
   DB_PORT: Number(process.env.DB_PORT ?? 5432),
   DB_USER: process.env.DB_USER ?? 'app_user',
   DB_PASS: process.env.DB_PASS ?? 'app_password',
-  DB_NAME: process.env.DB_NAME ?? 'car_usage'
+  DB_NAME: process.env.DB_NAME ?? 'car_manager_db'
 };

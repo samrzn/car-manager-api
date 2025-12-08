@@ -5,19 +5,21 @@ export class DriverService {
 
   _normalizeCpf(cpf) {
     if (!cpf) return '';
-    return cpf.replaceAll(/\D/g, '');
+    return cpf.replace(/\D/g, '');
   }
 
   _validateCpfBasic(cpf) {
     const normalized = this._normalizeCpf(cpf);
+
     if (normalized.length !== 11) {
       throw new Error('CPF deve conter 11 dígitos numéricos.');
     }
+
     return normalized;
   }
 
   async createDriver({ name, cpf }) {
-    if (!name?.trim()) {
+    if (!name || !name.trim()) {
       throw new Error('Nome do motorista é obrigatório.');
     }
 
@@ -42,7 +44,7 @@ export class DriverService {
     }
 
     if (name !== undefined) {
-      if (!name?.trim()) {
+      if (!name || !name.trim()) {
         throw new Error('Nome do motorista é obrigatório.');
       }
       driver.name = name.trim();
@@ -71,7 +73,7 @@ export class DriverService {
   }
 
   async listDrivers({ name }) {
-    if (name?.trim()) {
+    if (name && name.trim()) {
       return this.driverRepository.findByName(name.trim());
     }
 
