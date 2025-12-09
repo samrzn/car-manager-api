@@ -53,7 +53,7 @@ export class OrmCarUsageRepository extends CarUsageRepository {
     };
   }
 
-  async findActiveByCarId(carId) {
+  async findActiveCarById(carId) {
     const entity = await this.repository.findOne({
       where: {
         car: { id: carId },
@@ -75,7 +75,7 @@ export class OrmCarUsageRepository extends CarUsageRepository {
     };
   }
 
-  async findActiveByDriverId(driverId) {
+  async findActiveDriverById(driverId) {
     const entity = await this.repository.findOne({
       where: {
         driver: { id: driverId },

@@ -19,8 +19,8 @@ describe('CarUsageService', () => {
     carUsageRepository = {
       create: jest.fn(),
       findById: jest.fn(),
-      findActiveByCarId: jest.fn(),
-      findActiveByDriverId: jest.fn(),
+      findActiveCarById: jest.fn(),
+      findActiveDriverById: jest.fn(),
       finishUsage: jest.fn(),
       listAll: jest.fn()
     };
@@ -41,8 +41,8 @@ describe('CarUsageService', () => {
 
     carRepository.findById.mockResolvedValue(baseCar);
     driverRepository.findById.mockResolvedValue(baseDriver);
-    carUsageRepository.findActiveByCarId.mockResolvedValue(null);
-    carUsageRepository.findActiveByDriverId.mockResolvedValue(null);
+    carUsageRepository.findActiveCarById.mockResolvedValue(null);
+    carUsageRepository.findActiveDriverById.mockResolvedValue(null);
   });
 
   test('deve iniciar utilização quando carro e motorista estão livres', async () => {
@@ -67,10 +67,10 @@ describe('CarUsageService', () => {
 
     expect(carRepository.findById).toHaveBeenCalledWith(baseCar.id);
     expect(driverRepository.findById).toHaveBeenCalledWith(baseDriver.id);
-    expect(carUsageRepository.findActiveByCarId).toHaveBeenCalledWith(
+    expect(carUsageRepository.findActiveCarById).toHaveBeenCalledWith(
       baseCar.id
     );
-    expect(carUsageRepository.findActiveByDriverId).toHaveBeenCalledWith(
+    expect(carUsageRepository.findActiveDriverById).toHaveBeenCalledWith(
       baseDriver.id
     );
     expect(carUsageRepository.create).toHaveBeenCalled();
@@ -154,7 +154,7 @@ describe('CarUsageService', () => {
   });
 
   test('não deve permitir uso se carro já está em utilização ativa', async () => {
-    carUsageRepository.findActiveByCarId.mockResolvedValue({
+    carUsageRepository.findActiveCarById.mockResolvedValue({
       id: 'usage-1',
       carId: baseCar.id,
       driverId: baseDriver.id
@@ -172,7 +172,7 @@ describe('CarUsageService', () => {
   });
 
   test('não deve permitir uso se motorista já está em utilização ativa', async () => {
-    carUsageRepository.findActiveByDriverId.mockResolvedValue({
+    carUsageRepository.findActiveDriverById.mockResolvedValue({
       id: 'usage-1',
       carId: baseCar.id,
       driverId: baseDriver.id
@@ -228,8 +228,8 @@ describe('CarUsageService', () => {
 
     await service.finishUsage(firstUsage.id);
 
-    carUsageRepository.findActiveByCarId.mockResolvedValue(null);
-    carUsageRepository.findActiveByDriverId.mockResolvedValue(null);
+    carUsageRepository.findActiveCarById.mockResolvedValue(null);
+    carUsageRepository.findActiveDriverById.mockResolvedValue(null);
 
     carUsageRepository.create.mockResolvedValueOnce({
       id: 'usage-2',

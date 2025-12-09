@@ -7,12 +7,12 @@ export class CarUsageRepository {
     throw new Error('Method not implemented: findById');
   }
 
-  async findActiveByCarId(carId) {
-    throw new Error('Method not implemented: findActiveByCarId');
+  async findActiveCarById(carId) {
+    throw new Error('Method not implemented: findActiveCarById');
   }
 
-  async findActiveByDriverId(driverId) {
-    throw new Error('Method not implemented: findActiveByDriverId');
+  async findActiveDriverById(driverId) {
+    throw new Error('Method not implemented: findActiveDriverById');
   }
 
   async finishUsage(id, endDate) {

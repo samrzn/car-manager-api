@@ -23,13 +23,13 @@ export class CarUsageService {
     }
 
     const isVehicleInUsage =
-      await this.carUsageRepository.findActiveByCarId(carId);
+      await this.carUsageRepository.findActiveCarById(carId);
     if (isVehicleInUsage) {
       throw new Error('Este automóvel já está em utilização.');
     }
 
     const isDriverWithVehicle =
-      await this.carUsageRepository.findActiveByDriverId(driverId);
+      await this.carUsageRepository.findActiveDriverById(driverId);
     if (isDriverWithVehicle) {
       throw new Error('Este motorista já está utilizando um automóvel.');
     }
