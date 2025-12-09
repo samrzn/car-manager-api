@@ -9,17 +9,15 @@ import { driverController } from './presentation/http/controllers/DriverControll
 import { carController } from './presentation/http/controllers/CarController.js';
 import { carUsageController } from './presentation/http/controllers/CarUsageController.js';
 
-(async () => {
-  await initializeDataSourceWithRetry(AppDataSource);
+await initializeDataSourceWithRetry(AppDataSource);
 
-  const { driverService, carService, carUsageService } =
-    createAppContainer(AppDataSource);
+const { driverService, carService, carUsageService } =
+  createAppContainer(AppDataSource);
 
-  driverController.service = driverService;
-  carController.service = carService;
-  carUsageController.service = carUsageService;
+driverController.service = driverService;
+carController.service = carService;
+carUsageController.service = carUsageService;
 
-  app.listen(env.PORT, () => {
-    console.log(`Car Manager API running on port ${env.PORT}`);
-  });
-})();
+app.listen(env.PORT, () => {
+  console.log(`Car Manager API running on port ${env.PORT}`);
+});

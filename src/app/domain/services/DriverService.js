@@ -5,7 +5,7 @@ export class DriverService {
 
   _normalizeCpf(cpf) {
     if (!cpf) return '';
-    return cpf.replace(/\D/g, '');
+    return cpf.replaceAll(/\D/g, '');
   }
 
   _validateCpfBasic(cpf) {
@@ -19,7 +19,7 @@ export class DriverService {
   }
 
   async createDriver({ name, cpf }) {
-    if (!name || !name.trim()) {
+    if (!name?.trim()) {
       throw new Error('Nome do motorista é obrigatório.');
     }
 
@@ -44,7 +44,7 @@ export class DriverService {
     }
 
     if (name !== undefined) {
-      if (!name || !name.trim()) {
+      if (!name?.trim()) {
         throw new Error('Nome do motorista é obrigatório.');
       }
       driver.name = name.trim();
@@ -54,7 +54,7 @@ export class DriverService {
       const normalizedCpf = this._validateCpfBasic(cpf);
       const existing = await this.driverRepository.findByCpf(normalizedCpf);
 
-      if (existing && existing.id !== id) {
+      if (existing?.id !== id) {
         throw new Error('Já existe um motorista com este CPF.');
       }
 
@@ -73,8 +73,10 @@ export class DriverService {
   }
 
   async listDrivers({ name }) {
-    if (name && name.trim()) {
-      return this.driverRepository.findByName(name.trim());
+    const normalizedName = name?.trim();
+
+    if (normalizedName) {
+      return this.driverRepository.findByName(normalizedName);
     }
 
     return this.driverRepository.findAll();

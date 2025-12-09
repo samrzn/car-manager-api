@@ -32,7 +32,7 @@ export async function initializeDataSourceWithRetry(
   while (attempt <= retries) {
     try {
       if (dataSource.isInitialized) {
-        return dataSource;
+        return;
       }
 
       attempt += 1;
@@ -45,7 +45,7 @@ export async function initializeDataSourceWithRetry(
       await dataSource.initialize();
 
       console.log('Data Source successfully initialized.');
-      return dataSource;
+      return;
     } catch (error) {
       console.error(
         `Error initializing Data Source (attempt ${attempt} of ${
@@ -64,8 +64,6 @@ export async function initializeDataSourceWithRetry(
       await sleep(delay);
     }
   }
-
-  return dataSource;
 }
 
 export default AppDataSource;

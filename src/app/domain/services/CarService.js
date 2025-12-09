@@ -4,7 +4,7 @@ export class CarService {
   }
 
   _normalizePlate(plate) {
-    return plate ? plate.trim().toUpperCase() : '';
+    return plate?.trim().toUpperCase() ?? '';
   }
 
   async createCar({ plate, color, brand }) {
@@ -14,11 +14,11 @@ export class CarService {
       throw new Error('Placa do automóvel é obrigatória.');
     }
 
-    if (!color || !color.trim()) {
+    if (!color?.trim()) {
       throw new Error('Cor do automóvel é obrigatória.');
     }
 
-    if (!brand || !brand.trim()) {
+    if (!brand?.trim()) {
       throw new Error('Marca do automóvel é obrigatória.');
     }
 
@@ -47,7 +47,7 @@ export class CarService {
       }
 
       const existing = await this.carRepository.findByPlate(normalizedPlate);
-      if (existing && existing.id !== id) {
+      if (existing?.id !== id) {
         throw new Error('Já existe um automóvel com esta placa.');
       }
 
@@ -55,14 +55,14 @@ export class CarService {
     }
 
     if (color !== undefined) {
-      if (!color || !color.trim()) {
+      if (!color?.trim()) {
         throw new Error('Cor do automóvel é obrigatória.');
       }
       car.color = color.trim();
     }
 
     if (brand !== undefined) {
-      if (!brand || !brand.trim()) {
+      if (!brand?.trim()) {
         throw new Error('Marca do automóvel é obrigatória.');
       }
       car.brand = brand.trim();
@@ -80,10 +80,13 @@ export class CarService {
   }
 
   async listCars({ color, brand }) {
-    if ((color && color.trim()) || (brand && brand.trim())) {
+    const normalizedColor = color?.trim();
+    const normalizedBrand = brand?.trim();
+
+    if (normalizedColor || normalizedBrand) {
       return this.carRepository.findByFilters({
-        color: color?.trim(),
-        brand: brand?.trim()
+        color: normalizedColor,
+        brand: normalizedBrand
       });
     }
 

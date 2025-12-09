@@ -67,7 +67,7 @@ export class CarUsageController {
     } catch (error) {
       console.error(error);
 
-      if (error.message && error.message.includes('não encontrada')) {
+      if (error.message?.includes('Não encontrada')) {
         return res.status(404).json({ error: error.message });
       }
 
@@ -78,4 +78,4 @@ export class CarUsageController {
   }
 }
 
-export const carUsageController = new CarUsageController(null);
+export const carUsageController = new CarUsageController();

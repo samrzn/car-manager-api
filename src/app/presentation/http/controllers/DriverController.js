@@ -34,7 +34,7 @@ export class DriverController {
     } catch (error) {
       console.error(error);
 
-      if (error.message && error.message.includes('não encontrado')) {
+      if (error.message?.includes('Não encontrado')) {
         return res.status(404).json({ error: error.message });
       }
 
@@ -70,7 +70,7 @@ export class DriverController {
     } catch (error) {
       console.error(error);
 
-      if (error.message && error.message.includes('não encontrado')) {
+      if (error.message?.includes('Não encontrado')) {
         return res.status(404).json({ error: error.message });
       }
 
@@ -90,7 +90,7 @@ export class DriverController {
     } catch (error) {
       console.error(error);
 
-      if (error.message && error.message.includes('não encontrado')) {
+      if (error.message?.includes('Não encontrado')) {
         return res.status(404).json({ error: error.message });
       }
 

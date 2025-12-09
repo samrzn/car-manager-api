@@ -8,7 +8,7 @@ export class CarUsageService {
   async startUsage({ carId, driverId, reason, startDate }) {
     if (!carId) throw new Error('Carro é obrigatório.');
     if (!driverId) throw new Error('Motorista é obrigatório.');
-    if (!reason || !reason.trim()) {
+    if (!reason?.trim()) {
       throw new Error('Motivo da utilização é obrigatório.');
     }
 

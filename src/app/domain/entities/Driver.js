@@ -6,4 +6,14 @@ export class Driver {
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
   }
+
+  toJSON() {
+    return {
+      id: this.id,
+      name: this.name,
+      cpf: this.cpf,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt
+    };
+  }
 }
