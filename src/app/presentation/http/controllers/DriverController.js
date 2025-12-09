@@ -1,7 +1,3 @@
-import { makeDriverService } from '../../../config/container.js';
-
-const driverService = makeDriverService();
-
 export class DriverController {
   constructor(service) {
     this.service = service;
@@ -38,7 +34,7 @@ export class DriverController {
     } catch (error) {
       console.error(error);
 
-      if (error.message && error.message.includes('Não encontrado')) {
+      if (error.message && error.message.includes('não encontrado')) {
         return res.status(404).json({ error: error.message });
       }
 
@@ -74,7 +70,7 @@ export class DriverController {
     } catch (error) {
       console.error(error);
 
-      if (error.message && error.message.includes('Não encontrado')) {
+      if (error.message && error.message.includes('não encontrado')) {
         return res.status(404).json({ error: error.message });
       }
 
@@ -94,7 +90,7 @@ export class DriverController {
     } catch (error) {
       console.error(error);
 
-      if (error.message && error.message.includes('Não encontrado')) {
+      if (error.message && error.message.includes('não encontrado')) {
         return res.status(404).json({ error: error.message });
       }
 
@@ -105,4 +101,4 @@ export class DriverController {
   }
 }
 
-export const driverController = new DriverController(driverService);
+export const driverController = new DriverController();

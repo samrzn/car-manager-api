@@ -1,7 +1,3 @@
-import { makeCarUsageService } from '../../../config/container.js';
-
-const carUsageService = makeCarUsageService();
-
 export class CarUsageController {
   constructor(service) {
     this.service = service;
@@ -71,7 +67,7 @@ export class CarUsageController {
     } catch (error) {
       console.error(error);
 
-      if (error.message && error.message.includes('Não encontrada')) {
+      if (error.message && error.message.includes('não encontrada')) {
         return res.status(404).json({ error: error.message });
       }
 
@@ -82,4 +78,4 @@ export class CarUsageController {
   }
 }
 
-export const carUsageController = new CarUsageController(carUsageService);
+export const carUsageController = new CarUsageController(null);

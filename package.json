@@ -5,8 +5,8 @@
   "main": "src/app/app.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/app/app.js",
-    "start": "node src/app/app.js",
+    "dev": "nodemon src/app/server.js",
+    "start": "node src/app/server.js",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --runInBand",
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watchAll",
     "migration:run": "typeorm migration:run -d src/app/config/data-source.js",

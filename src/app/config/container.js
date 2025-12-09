@@ -6,20 +6,42 @@ import { DriverService } from '../domain/services/DriverService.js';
 import { CarService } from '../domain/services/CarService.js';
 import { CarUsageService } from '../domain/services/CarUsageService.js';
 
-export function makeDriverService() {
-  const repo = new OrmDriverRepository(AppDataSource);
-  return new DriverService(repo);
+export function createRepositories(dataSource = AppDataSource) {
+  const driverRepository = new OrmDriverRepository(dataSource);
+  const carRepository = new OrmCarRepository(dataSource);
+  const carUsageRepository = new OrmCarUsageRepository(dataSource);
+
+  return {
+    driverRepository,
+    carRepository,
+    carUsageRepository
+  };
 }
 
-export function makeCarService() {
-  const repo = new OrmCarRepository(AppDataSource);
-  return new CarService(repo);
+export function createServices(repositories) {
+  const { driverRepository, carRepository, carUsageRepository } = repositories;
+
+  const driverService = new DriverService(driverRepository);
+  const carService = new CarService(carRepository);
+  const carUsageService = new CarUsageService(
+    carUsageRepository,
+    carRepository,
+    driverRepository
+  );
+
+  return {
+    driverService,
+    carService,
+    carUsageService
+  };
 }
 
-export function makeCarUsageService() {
-  const usageRepo = new OrmCarUsageRepository(AppDataSource);
-  const carRepo = new OrmCarRepository(AppDataSource);
-  const driverRepo = new OrmDriverRepository(AppDataSource);
+export function createAppContainer(dataSource = AppDataSource) {
+  const repositories = createRepositories(dataSource);
+  const services = createServices(repositories);
 
-  return new CarUsageService(usageRepo, carRepo, driverRepo);
+  return {
+    ...repositories,
+    ...services
+  };
 }
