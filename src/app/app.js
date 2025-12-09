@@ -7,6 +7,6 @@ const app = express();
 app.use(express.json());
 app.use(routes);
 
-console.log(`App inicializado no modo ${env.NODE_ENV}.`);
+console.log(`App started in environment ${env.NODE_ENV}.`);
 
 export default app;

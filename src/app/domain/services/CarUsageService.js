@@ -22,14 +22,15 @@ export class CarUsageService {
       throw new Error('Motorista não encontrado.');
     }
 
-    const activeForCar = await this.carUsageRepository.findActiveByCarId(carId);
-    if (activeForCar) {
+    const isVehicleInUsage =
+      await this.carUsageRepository.findActiveByCarId(carId);
+    if (isVehicleInUsage) {
       throw new Error('Este automóvel já está em utilização.');
     }
 
-    const activeForDriver =
+    const isDriverWithVehicle =
       await this.carUsageRepository.findActiveByDriverId(driverId);
-    if (activeForDriver) {
+    if (isDriverWithVehicle) {
       throw new Error('Este motorista já está utilizando um automóvel.');
     }
 

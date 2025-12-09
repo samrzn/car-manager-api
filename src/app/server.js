@@ -20,6 +20,6 @@ import { carUsageController } from './presentation/http/controllers/CarUsageCont
   carUsageController.service = carUsageService;
 
   app.listen(env.PORT, () => {
-    console.log(`Car Manager API rodando na porta ${env.PORT}`);
+    console.log(`Car Manager API running on port ${env.PORT}`);
   });
 })();
