@@ -88,16 +88,13 @@ Utilize o comando:
 
 # Rotas para teste manual
 
+#### Verifique o arquivo `example-payloads.json` na raiz da pasta `tests`, para referência de valores que poderão ser utilizados nos testes de requisições das rotas POST.
+
 ## Driver
 
 ### Criar motorista
 
 `POST/drivers`
-Body:
-{
-"name": "João da Silva",
-"cpf": "123.456.789-09"
-}
 
 ### Listar motoristas
 
@@ -110,6 +107,7 @@ Body:
 ### Atualizar motorista por ID
 
 `PUT/drivers/:id`
+
 Body:
 {
 "name": "João Atualizado"
@@ -126,12 +124,6 @@ Body:
 ### Criar carro
 
 `POST/cars`
-Body:
-{
-"plate": "ABC-1D23",
-"color": "Prata",
-"brand": "Fiat"
-}
 
 ### Listar carros
 
@@ -145,6 +137,7 @@ Opcional: `?color=Prata&brand=Fiat`
 ### Atualizar carro por ID
 
 `PUT/cars/:id`
+
 Body:
 {
 "color": "Vermelho"
@@ -161,13 +154,6 @@ Body:
 ### Criar utilização
 
 `POST/usages`
-Body:
-{
-"carId": "UUID_DO_CARRO",
-"driverId": "UUID_DO_MOTORISTA",
-"reason": "Visita a cliente",
-"startDate": "2025-01-10T09:00:00.000Z"
-}
 
 ### Listar utilizações
 
@@ -180,3 +166,5 @@ Body:
 ### Finalizar utilização
 
 `PATCH/usages/:id/finish`
+
+Opcional: { "endDate": "pode ser null ou uma data ISO 8601" }

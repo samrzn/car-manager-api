@@ -4,7 +4,12 @@ export class CarService {
   }
 
   _normalizePlate(plate) {
-    return plate?.trim().toUpperCase() ?? '';
+    return (
+      plate
+        ?.trim()
+        .replaceAll(/[^a-zA-Z0-9]/g, '')
+        .toUpperCase() ?? ''
+    );
   }
 
   async createCar({ plate, color, brand }) {
@@ -47,7 +52,7 @@ export class CarService {
       }
 
       const existing = await this.carRepository.findByPlate(normalizedPlate);
-      if (existing?.id !== id) {
+      if (existing && String(existing.id) !== String(id)) {
         throw new Error('Já existe um automóvel com esta placa.');
       }
 

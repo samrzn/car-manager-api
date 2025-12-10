@@ -1,0 +1,57 @@
+{
+  "Drivers": [
+    {
+      "name": "João da Silva",
+      "cpf": "123.456.789-09"
+    },
+    {
+      "name": "Mariana Souza",
+      "cpf": "987.654.321-00"
+    },
+    {
+      "name": "Carlos Alberto",
+      "cpf": "111.222.333-44"
+    },
+    {
+      "name": "Fernanda Lima",
+      "cpf": "555.666.777-88"
+    },
+    {
+      "name": "Ricardo Mendes",
+      "cpf": "012.345.678-90"
+    }
+  ],
+  "Cars": [
+    {
+      "plate": "ABC-1D23",
+      "color": "Prata",
+      "brand": "Fiat"
+    },
+    {
+      "plate": "XYZ-9A88",
+      "color": "Preto",
+      "brand": "Toyota"
+    },
+    {
+      "plate": "KLM-2B14",
+      "color": "Branco",
+      "brand": "Volkswagen"
+    },
+    {
+      "plate": "DEF-3C55",
+      "color": "Vermelho",
+      "brand": "Ford"
+    },
+    {
+      "plate": "QRS-7E90",
+      "color": "Azul",
+      "brand": "Chevrolet"
+    }
+  ],
+  "Usages": {
+    "carId": "UUID_DO_CARRO",
+    "driverId": "UUID_DO_MOTORISTA",
+    "reason": "Visita a cliente",
+    "startDate": "pode ser null ou uma data ISO 8601"
+  }
+}

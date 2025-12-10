@@ -82,7 +82,7 @@ describe('CarService', () => {
   test('deve atualizar dados do automóvel', async () => {
     const existing = {
       id: '1',
-      plate: 'ABC1D23',
+      plate: 'ABC-1D23',
       color: 'Prata',
       brand: 'Fiat'
     };
@@ -92,7 +92,7 @@ describe('CarService', () => {
     carRepository.update.mockImplementation(async (car) => car);
 
     const updated = await service.updateCar('1', {
-      plate: 'XYZ9Z99',
+      plate: 'XYZ-9Z99',
       color: 'Preto',
       brand: 'Ford'
     });

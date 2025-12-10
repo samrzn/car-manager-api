@@ -54,7 +54,7 @@ export class DriverService {
       const normalizedCpf = this._validateCpfBasic(cpf);
       const existing = await this.driverRepository.findByCpf(normalizedCpf);
 
-      if (existing?.id !== id) {
+      if (existing && String(existing.id) !== String(id)) {
         throw new Error('Já existe um motorista com este CPF.');
       }
 
